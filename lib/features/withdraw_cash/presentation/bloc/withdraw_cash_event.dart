@@ -7,10 +7,10 @@ sealed class WithdrawCashEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class GetCash extends WithdrawCashEvent {
-  final String mapOfIntString;
+class GetCashEvent extends WithdrawCashEvent {
+  final String numberString;
 
-  const GetCash(
-    this.mapOfIntString,
+  const GetCashEvent(
+    this.numberString,
   );
 }

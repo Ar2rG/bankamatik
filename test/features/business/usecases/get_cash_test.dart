@@ -22,7 +22,7 @@ void main() {
     // arrange
     when(mock.getCash(any)).thenAnswer((_) async => const Right(tLimits));
     // act
-    final result = await usecase(desiredAmount: tDesiredAmount);
+    final result = await usecase.exexute(desiredAmount: tDesiredAmount);
     // assert
     expect(result, const Right(tLimits));
     verify(mock.getCash(tDesiredAmount));

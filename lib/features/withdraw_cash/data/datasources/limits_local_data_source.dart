@@ -6,11 +6,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../models/limits_model.dart';
 
 abstract class LimitsLocalDataSource {
-  /// Gets the cached [LimitsModel] which was gotten the last time
-  ///
-  /// Throws [CacheException] if no cached data is present.
   Future<LimitsModel> getLimits();
-  Future<void> cacheLimits(LimitsModel limitsToCache);
+  // Future<void> cacheLimits(LimitsModel limitsToCache);
 }
 
 class LimitsLocalDataSourceImpl implements LimitsLocalDataSource {
@@ -22,17 +19,19 @@ class LimitsLocalDataSourceImpl implements LimitsLocalDataSource {
   Future<LimitsModel> getLimits() {
     final jsonString = sharedPreferences.getString("limits");
     if (jsonString != null) {
+      // Вот тут зашить логику выдачи денежек
+
       return Future.value(LimitsModel.fromJson(json.decode(jsonString)));
     } else {
       throw CacheException();
     }
   }
 
-  @override
-  Future<void> cacheLimits(LimitsModel limitsToCache) {
-    return sharedPreferences.setString(
-      "limits",
-      json.encode(limitsToCache),
-    );
-  }
+  // @override
+  // Future<void> cacheLimits(LimitsModel limitsToCache) {
+  //   return sharedPreferences.setString(
+  //     "limits",
+  //     json.encode(limitsToCache),
+  //   );
+  // }
 }
