@@ -3,13 +3,19 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i4;
+import 'dart:async' as _i6;
 
-import 'package:bankamatik/core/errors/failure.dart' as _i5;
+import 'package:bankamatik/core/errors/failure.dart' as _i7;
 import 'package:bankamatik/features/withdraw_cash/business/entities/limits.dart'
-    as _i6;
+    as _i8;
 import 'package:bankamatik/features/withdraw_cash/business/repositories/withdraw_cash_repository.dart'
+    as _i5;
+import 'package:bankamatik/features/withdraw_cash/data/datasources/limits_local_data_source.dart'
     as _i3;
+import 'package:bankamatik/features/withdraw_cash/data/models/limits_model.dart'
+    as _i4;
+import 'package:bankamatik/features/withdraw_cash/data/repositories/withdraw_cash_repository_impl.dart'
+    as _i9;
 import 'package:dartz/dartz.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
 
@@ -36,29 +42,122 @@ class _FakeEither_0<L, R> extends _i1.SmartFake implements _i2.Either<L, R> {
         );
 }
 
+class _FakeLimitsLocalDataSource_1 extends _i1.SmartFake
+    implements _i3.LimitsLocalDataSource {
+  _FakeLimitsLocalDataSource_1(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
+class _FakeLimitsModel_2 extends _i1.SmartFake implements _i4.LimitsModel {
+  _FakeLimitsModel_2(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
 /// A class which mocks [WithdrawCashRepository].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockWithdrawCashRepository extends _i1.Mock
-    implements _i3.WithdrawCashRepository {
+    implements _i5.WithdrawCashRepository {
   MockWithdrawCashRepository() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i4.Future<_i2.Either<_i5.Failure, _i6.Limits>> getCash(int? desiredAmount) =>
+  _i6.Future<_i2.Either<_i7.Failure, _i8.Limits>> getCash(int? desiredAmount) =>
       (super.noSuchMethod(
         Invocation.method(
           #getCash,
           [desiredAmount],
         ),
-        returnValue: _i4.Future<_i2.Either<_i5.Failure, _i6.Limits>>.value(
-            _FakeEither_0<_i5.Failure, _i6.Limits>(
+        returnValue: _i6.Future<_i2.Either<_i7.Failure, _i8.Limits>>.value(
+            _FakeEither_0<_i7.Failure, _i8.Limits>(
           this,
           Invocation.method(
             #getCash,
             [desiredAmount],
           ),
         )),
-      ) as _i4.Future<_i2.Either<_i5.Failure, _i6.Limits>>);
+      ) as _i6.Future<_i2.Either<_i7.Failure, _i8.Limits>>);
+}
+
+/// A class which mocks [WithdrawCashRepositoryImpl].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockWithdrawCashRepositoryImpl extends _i1.Mock
+    implements _i9.WithdrawCashRepositoryImpl {
+  MockWithdrawCashRepositoryImpl() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i3.LimitsLocalDataSource get localDataSource => (super.noSuchMethod(
+        Invocation.getter(#localDataSource),
+        returnValue: _FakeLimitsLocalDataSource_1(
+          this,
+          Invocation.getter(#localDataSource),
+        ),
+      ) as _i3.LimitsLocalDataSource);
+
+  @override
+  _i6.Future<_i2.Either<_i7.Failure, _i8.Limits>> getCash(int? desiredAmount) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getCash,
+          [desiredAmount],
+        ),
+        returnValue: _i6.Future<_i2.Either<_i7.Failure, _i8.Limits>>.value(
+            _FakeEither_0<_i7.Failure, _i8.Limits>(
+          this,
+          Invocation.method(
+            #getCash,
+            [desiredAmount],
+          ),
+        )),
+      ) as _i6.Future<_i2.Either<_i7.Failure, _i8.Limits>>);
+}
+
+/// A class which mocks [LimitsLocalDataSource].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockLimitsLocalDataSource extends _i1.Mock
+    implements _i3.LimitsLocalDataSource {
+  MockLimitsLocalDataSource() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i6.Future<_i4.LimitsModel> getLastLimits() => (super.noSuchMethod(
+        Invocation.method(
+          #getLastLimits,
+          [],
+        ),
+        returnValue: _i6.Future<_i4.LimitsModel>.value(_FakeLimitsModel_2(
+          this,
+          Invocation.method(
+            #getLastLimits,
+            [],
+          ),
+        )),
+      ) as _i6.Future<_i4.LimitsModel>);
+
+  @override
+  _i6.Future<void> cacheLimits(_i4.LimitsModel? limitsToCache) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #cacheLimits,
+          [limitsToCache],
+        ),
+        returnValue: _i6.Future<void>.value(),
+        returnValueForMissingStub: _i6.Future<void>.value(),
+      ) as _i6.Future<void>);
 }

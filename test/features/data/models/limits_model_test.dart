@@ -9,11 +9,12 @@ import '../../../fixtures/fixture_reader.dart';
 void main() {
   const tLimitsModel =
       LimitsModel(limits: {5000: 1, 2000: 1, 1000: 1, 500: 1, 200: 1, 100: 1});
-  test('should be a subclass of Limits entity', () async {
+  test('Должен быть подклассом сущности Limits', () async {
     expect(tLimitsModel, isA<Limits>());
   });
   group('fromJson', () {
-    test('should return a valid model when the JSON is Map <int,int>',
+    test(
+        'Должен возвращать валидную модель, если в JSON находится Map <int,int>',
         () async {
       // arrange
       final Map<String, dynamic> jsonMap = json.decode(fixture('limit.json'));
@@ -24,7 +25,7 @@ void main() {
     });
   });
   group('toJson', () {
-    test('should return a JSON map containing proper data', () async {
+    test('Должен вернуть JSON содержащий правильные данные', () async {
       // act
       final result = tLimitsModel.toJson();
       // assert
