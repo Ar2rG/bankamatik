@@ -7,3 +7,7 @@ class WithdrawCashFailure extends Failure {
   WithdrawCashFailure({required String errorMessage})
       : super(errorMessage: errorMessage);
 }
+
+class CacheFailure extends Failure {
+  CacheFailure({required super.errorMessage});
+}

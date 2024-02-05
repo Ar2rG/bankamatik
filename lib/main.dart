@@ -39,6 +39,6 @@ class _MyHomePageState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(); // Тут будет сама страница
+    return const SizedBox(); // Тут будет сама страница
   }
 }
