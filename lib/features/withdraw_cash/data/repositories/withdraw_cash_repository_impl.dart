@@ -15,7 +15,7 @@ class WithdrawCashRepositoryImpl implements WithdrawCashRepository {
   @override
   Future<Either<Failure, Limits>> getCash(int desiredAmount) async {
     try {
-      final localLimits = await localDataSource.getLastLimits();
+      final localLimits = await localDataSource.getLimits();
       return Right(localLimits);
     } on CacheException {
       return Left(CacheFailure(errorMessage: 'Ошибка: Нет наличных'));
