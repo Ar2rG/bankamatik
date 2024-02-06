@@ -4,6 +4,6 @@ class CustomBottomBar extends BottomAppBar {
   const CustomBottomBar({super.key});
 
   Widget build(BuildContext context) {
-    return BottomAppBar();
+    return const BottomAppBar();
   }
 }

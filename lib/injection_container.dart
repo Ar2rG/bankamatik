@@ -10,7 +10,7 @@ import 'features/withdraw_cash/presentation/bloc/withdraw_cash_bloc.dart';
 
 final sl = GetIt.instance;
 
-void init() {
+Future<void> init() async {
 //! Feature - Withdraw Cash
 // Bloc
   sl.registerFactory(() => WithdrawCashBloc(
@@ -27,7 +27,7 @@ void init() {
       () => LimitsLocalDataSourceImpl(sharedPreferences: sl()));
 
 //! Core
-  sl.registerSingleton(() => InputConverter());
+  sl.registerLazySingleton(() => InputConverter());
 
 //! External
   sl.registerSingletonAsync<SharedPreferences>(
