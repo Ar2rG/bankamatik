@@ -6,8 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../models/limits_model.dart';
 
 abstract class LimitsLocalDataSource {
-  Future<LimitsModel> getLimits();
-  Future<LimitsModel> getActualLimit();
+  Future<LimitsModel> getLimits(int desiredAmount);
 }
 
 class LimitsLocalDataSourceImpl implements LimitsLocalDataSource {
@@ -16,32 +15,35 @@ class LimitsLocalDataSourceImpl implements LimitsLocalDataSource {
   LimitsLocalDataSourceImpl({required this.sharedPreferences});
 
   @override
-  Future<LimitsModel> getLimits() {
+  Future<LimitsModel> getLimits(int desiredAmount) {
     final jsonString = sharedPreferences.getString("limits");
     if (jsonString != null) {
-      // Вот тут зашить логику списания с баланса
-      // После изменить сумму в локальном хранилище и вызвать отображение актуального состояния
-
-      return Future.value(LimitsModel.fromJson(json.decode(jsonString)));
+      try {
+        // Выдача купюр от большего к меньшему
+        Map<int, int> availableBanknotes = json.decode(jsonString);
+        Map<int, int> result = {};
+        for (var banknote in availableBanknotes.keys.toList()) {
+          int count = desiredAmount ~/ banknote;
+          if (count > 0) {
+            if (availableBanknotes[banknote]! >= count) {
+              result[banknote] = count;
+              desiredAmount -= count * banknote;
+            } else {
+              result[banknote] = availableBanknotes[banknote]!;
+              desiredAmount -= availableBanknotes[banknote]! * banknote;
+            }
+          }
+        }
+        if (desiredAmount == 0) {
+          return Future.value(LimitsModel.fromJson(json.decode('$result')));
+        } else {
+          throw Exception();
+        }
+      } on Exception {
+        throw CacheException();
+      }
     } else {
       throw CacheException();
     }
   }
-
-  Future<LimitsModel> getActualLimit() {
-    final jsonString = sharedPreferences.getString("limits");
-    if (jsonString != null) {
-      return Future.value(LimitsModel.fromJson(json.decode(jsonString)));
-    } else {
-      throw CacheException();
-    }
-  }
-
-  // @override
-  // Future<void> cacheLimits(LimitsModel limitsToCache) {
-  //   return sharedPreferences.setString(
-  //     "limits",
-  //     json.encode(limitsToCache),
-  //   );
-  // }
 }

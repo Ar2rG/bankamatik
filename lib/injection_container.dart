@@ -3,7 +3,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'core/util/input_converter.dart';
 import 'features/withdraw_cash/business/repositories/withdraw_cash_repository.dart';
-import 'features/withdraw_cash/business/usecases/get_actual_limit.dart';
 import 'features/withdraw_cash/business/usecases/get_cash.dart';
 import 'features/withdraw_cash/data/datasources/limits_local_data_source.dart';
 import 'features/withdraw_cash/data/repositories/withdraw_cash_repository_impl.dart';
@@ -15,12 +14,11 @@ Future<void> init() async {
 //! Feature - Withdraw Cash
 // Bloc
   locator.registerFactory(() => WithdrawCashBloc(
-      getCash: locator(),
-      inputConverter: locator(),
-      getActualLimit: locator()));
+        getCash: locator(),
+        inputConverter: locator(),
+      ));
 // Use cases
   locator.registerLazySingleton(() => GetCash(locator()));
-  locator.registerLazySingleton(() => GetActualLimit(locator()));
 // Repositories
   locator.registerLazySingleton<WithdrawCashRepository>(
       () => WithdrawCashRepositoryImpl(localDataSource: locator()));

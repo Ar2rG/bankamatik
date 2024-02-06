@@ -7,11 +7,7 @@ sealed class WithdrawCashState extends Equatable {
   List<Object?> get props => [];
 }
 
-final class WithdrawCashInitial extends WithdrawCashState {
-// Наверное куда-то сюда вставлю загрузку лимитов или вообще в мэйн
-}
-
-final class Empty extends WithdrawCashState {}
+final class WithdrawCashInitial extends WithdrawCashState {}
 
 final class Loading extends WithdrawCashState {}
 

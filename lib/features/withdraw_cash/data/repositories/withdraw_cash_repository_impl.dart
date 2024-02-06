@@ -1,11 +1,10 @@
-import 'package:bankamatik/features/withdraw_cash/data/datasources/limits_local_data_source.dart';
+import 'package:dartz/dartz.dart';
 
 import '../../../../core/errors/exceptions.dart';
 import '../../../../core/errors/failure.dart';
-import '../../business/repositories/withdraw_cash_repository.dart';
-import 'package:dartz/dartz.dart';
-
 import '../../business/entities/limits.dart';
+import '../../business/repositories/withdraw_cash_repository.dart';
+import '../datasources/limits_local_data_source.dart';
 
 class WithdrawCashRepositoryImpl implements WithdrawCashRepository {
   final LimitsLocalDataSource localDataSource;
@@ -15,17 +14,7 @@ class WithdrawCashRepositoryImpl implements WithdrawCashRepository {
   @override
   Future<Either<Failure, Limits>> getCash(int desiredAmount) async {
     try {
-      final localLimits = await localDataSource.getLimits();
-      return Right(localLimits);
-    } on CacheException {
-      return Left(CacheFailure());
-    }
-  }
-
-  @override
-  Future<Either<Failure, Limits>> getActualLimit() async {
-    try {
-      final localLimits = await localDataSource.getLimits();
+      final localLimits = await localDataSource.getLimits(desiredAmount);
       return Right(localLimits);
     } on CacheException {
       return Left(CacheFailure());

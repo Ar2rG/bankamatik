@@ -13,9 +13,6 @@ class CustomLimitsView extends StatelessWidget {
       if (state is WithdrawCashInitial) {
         return const Text("Initial");
       }
-      if (state is Empty) {
-        return const Text("Empty");
-      }
       if (state is Loading) {
         return const Center(
           child: CircularProgressIndicator(),

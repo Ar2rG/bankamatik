@@ -1,6 +1,7 @@
-import 'package:bankamatik/features/withdraw_cash/presentation/widgets/custom_app_bar.dart';
-import 'package:bankamatik/features/withdraw_cash/presentation/widgets/custom_bottom_bar.dart';
-import 'package:bankamatik/features/withdraw_cash/presentation/widgets/custom_limits_view.dart';
+import '../widgets/custom_app_bar.dart';
+import '../widgets/custom_bottom_bar.dart';
+import '../widgets/custom_limits_view.dart';
+import '../widgets/withdraw_controls.dart';
 import 'package:flutter/material.dart';
 
 class WithdrawCashPage extends StatelessWidget {
@@ -10,7 +11,12 @@ class WithdrawCashPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(),
-      body: const CustomLimitsView(),
+      body: const Column(
+        children: [
+          CustomLimitsView(),
+          WithdrawControls(),
+        ],
+      ),
       bottomNavigationBar: const CustomBottomBar(),
     );
   }
