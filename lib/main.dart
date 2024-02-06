@@ -4,13 +4,9 @@ import 'package:bankamatik/injection_container.dart';
 import 'package:flutter/material.dart';
 import 'package:bankamatik/injection_container.dart' as di;
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
-void main() async {
-  await di.init();
-  // SharedPreferences addLimits = await SharedPreferences.getInstance();
-  // addLimits.setString("limits",
-  //     "{'5000': 10, '2000': 100, '1000': 10, '500': 5, '200': 100, '100': 50}");
+void main() {
+  di.init();
   runApp(const MyApp());
 }
 
@@ -20,7 +16,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-        providers: [BlocProvider(create: (_) => locator<WithdrawCashBloc>())],
+        providers: [BlocProvider(create: (_) => sl<WithdrawCashBloc>())],
         child: MaterialApp(
             title: 'Bankamatik',
             theme: ThemeData(

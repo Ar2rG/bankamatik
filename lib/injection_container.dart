@@ -8,28 +8,28 @@ import 'features/withdraw_cash/data/datasources/limits_local_data_source.dart';
 import 'features/withdraw_cash/data/repositories/withdraw_cash_repository_impl.dart';
 import 'features/withdraw_cash/presentation/bloc/withdraw_cash_bloc.dart';
 
-final locator = GetIt.instance;
+final sl = GetIt.instance;
 
-Future<void> init() async {
+void init() {
 //! Feature - Withdraw Cash
 // Bloc
-  locator.registerFactory(() => WithdrawCashBloc(
-        getCash: locator(),
-        inputConverter: locator(),
+  sl.registerFactory(() => WithdrawCashBloc(
+        getCash: sl(),
+        inputConverter: sl(),
       ));
 // Use cases
-  locator.registerLazySingleton(() => GetCash(locator()));
+  sl.registerLazySingleton(() => GetCash(sl()));
 // Repositories
-  locator.registerLazySingleton<WithdrawCashRepository>(
-      () => WithdrawCashRepositoryImpl(localDataSource: locator()));
+  sl.registerLazySingleton<WithdrawCashRepository>(
+      () => WithdrawCashRepositoryImpl(localDataSource: sl()));
 // Data sources
-  locator.registerLazySingleton<LimitsLocalDataSource>(
-      () => LimitsLocalDataSourceImpl(sharedPreferences: locator()));
+  sl.registerLazySingleton<LimitsLocalDataSource>(
+      () => LimitsLocalDataSourceImpl(sharedPreferences: sl()));
 
 //! Core
-  locator.registerLazySingleton(() => InputConverter());
+  sl.registerSingleton(() => InputConverter());
 
 //! External
-  final sharedPreferences = await SharedPreferences.getInstance();
-  locator.registerLazySingleton<SharedPreferences>(() => sharedPreferences);
+  sl.registerSingletonAsync<SharedPreferences>(
+      () => SharedPreferences.getInstance());
 }
