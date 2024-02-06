@@ -1,13 +1,11 @@
 abstract class Failure {
-  final String errorMessage;
-  const Failure({required this.errorMessage});
+  const Failure();
 }
 
 class WithdrawCashFailure extends Failure {
-  WithdrawCashFailure({required String errorMessage})
-      : super(errorMessage: errorMessage);
+  WithdrawCashFailure();
 }
 
 class CacheFailure extends Failure {
-  CacheFailure({required super.errorMessage});
+  CacheFailure();
 }

@@ -6,16 +6,15 @@ class InputConverter {
     try {
       final integer = int.parse(str);
       if (integer < 100 || integer % 2 == 0) {
-        throw FormatException();
+        throw const FormatException();
       }
       return Right(integer);
     } on FormatException {
-      return Left(InvalidInputFailure(
-          errorMessage: "Ошибка преобразования строки или неверное число"));
+      return Left(InvalidInputFailure());
     }
   }
 }
 
 class InvalidInputFailure extends Failure {
-  InvalidInputFailure({required super.errorMessage});
+  InvalidInputFailure();
 }

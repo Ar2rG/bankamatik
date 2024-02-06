@@ -7,7 +7,7 @@ import '../models/limits_model.dart';
 
 abstract class LimitsLocalDataSource {
   Future<LimitsModel> getLimits();
-  // Future<void> cacheLimits(LimitsModel limitsToCache);
+  Future<LimitsModel> getActualLimit();
 }
 
 class LimitsLocalDataSourceImpl implements LimitsLocalDataSource {
@@ -19,8 +19,18 @@ class LimitsLocalDataSourceImpl implements LimitsLocalDataSource {
   Future<LimitsModel> getLimits() {
     final jsonString = sharedPreferences.getString("limits");
     if (jsonString != null) {
-      // Вот тут зашить логику выдачи денежек
+      // Вот тут зашить логику списания с баланса
+      // После изменить сумму в локальном хранилище и вызвать отображение актуального состояния
 
+      return Future.value(LimitsModel.fromJson(json.decode(jsonString)));
+    } else {
+      throw CacheException();
+    }
+  }
+
+  Future<LimitsModel> getActualLimit() {
+    final jsonString = sharedPreferences.getString("limits");
+    if (jsonString != null) {
       return Future.value(LimitsModel.fromJson(json.decode(jsonString)));
     } else {
       throw CacheException();

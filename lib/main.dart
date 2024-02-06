@@ -1,6 +1,9 @@
+import 'package:bankamatik/features/withdraw_cash/presentation/pages/withdraw_cash_page.dart';
 import 'package:flutter/material.dart';
+import 'package:bankamatik/injection_container.dart' as di;
 
-void main() {
+void main() async {
+  await di.init();
   runApp(const MyApp());
 }
 
@@ -16,29 +19,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const Home(),
+      home: const WithdrawCashPage(),
     );
-  }
-}
-
-class Home extends StatefulWidget {
-  const Home({super.key});
-  @override
-  State<Home> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<Home> {
-  @override
-  void initState() {
-    // Тут важно помнить, что сначала отключение от прослушивания
-    // После этого идёт инициализация количества банкнот
-    // Решил, что количество банкнот будет в сущности Limits и
-    // Просчитываться из Map
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return const SizedBox(); // Тут будет сама страница
   }
 }
