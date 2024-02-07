@@ -8,7 +8,7 @@ class GetCash {
   final WithdrawCashRepository repository;
 
   GetCash(this.repository);
-  Future<Either<Failure, Limits>> call({required int desiredAmount}) async {
-    return await repository.getCash(desiredAmount);
+  Future<Either<Failure, Limits>> call() async {
+    return await repository.getActualLimits();
   }
 }

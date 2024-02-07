@@ -20,4 +20,14 @@ class WithdrawCashRepositoryImpl implements WithdrawCashRepository {
       return Left(CacheFailure());
     }
   }
+
+  @override
+  Future<Either<Failure, Limits>> getActualLimits() async {
+    try {
+      final localLimits = await localDataSource.getActualLimits();
+      return Right(localLimits);
+    } on CacheException {
+      return Left(CacheFailure());
+    }
+  }
 }
