@@ -21,22 +21,30 @@ class LimitsLocalDataSourceImpl implements LimitsLocalDataSource {
     final jsonString = sharedPreferences.getString("limits");
     try {
       // Выдача купюр от большего к меньшему
-      Map<int, int> availableBanknotes = json.decode(jsonString!);
-      Map<int, int> result = {};
+      Map<int, int> availableBanknotes =
+          LimitsModel.fromJson(json.decode(jsonString!)).limits;
+      Map<String, int> result = {};
       for (var banknote in availableBanknotes.keys.toList()) {
+        // Количество купюр данного номинала, которое можно использовать
+        // Усекающее деление
         int count = desiredAmount ~/ banknote;
         if (count > 0) {
           if (availableBanknotes[banknote]! >= count) {
-            result[banknote] = count;
+            result["$banknote"] = count;
             desiredAmount -= count * banknote;
           } else {
-            result[banknote] = availableBanknotes[banknote]!;
+            result["$banknote"] = availableBanknotes[banknote]!;
             desiredAmount -= availableBanknotes[banknote]! * banknote;
+          }
+          // Остановка цикла если сумма дошла до нуля
+          if (desiredAmount == 0) {
+            break;
           }
         }
       }
+      // Проверка остатка
       if (desiredAmount == 0) {
-        return Future.value(LimitsModel.fromJson(json.decode('$result')));
+        return Future.value(LimitsModel.fromJson(result));
       } else {
         throw Exception();
       }
@@ -50,7 +58,7 @@ class LimitsLocalDataSourceImpl implements LimitsLocalDataSource {
     final jsonString = sharedPreferences.getString("limits");
     // Инициализация значений, если поле limits null
     if (jsonString == null) {
-      final initialLimits = {
+      final Map<String, int> initialLimits = {
         "5000": 10,
         "2000": 100,
         "1000": 10,
@@ -58,11 +66,11 @@ class LimitsLocalDataSourceImpl implements LimitsLocalDataSource {
         "200": 100,
         "100": 50
       };
-      sharedPreferences.setString("limits", json.encode(initialLimits));
-      return Future.value(LimitsModel.fromJson(
-          json.decode(sharedPreferences.getString("limits")!)));
+      sharedPreferences.setString("limits", jsonEncode(initialLimits));
+      return Future.value(LimitsModel.fromJson(initialLimits));
     } else {
-      return Future.value(LimitsModel.fromJson(json.decode(jsonString)));
+      final Map<String, dynamic> jsonMap = json.decode(jsonString);
+      return Future.value(LimitsModel.fromJson(jsonMap));
     }
   }
 }

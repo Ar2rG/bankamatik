@@ -14,9 +14,3 @@ class GetCashEvent extends WithdrawCashEvent {
     this.numberString,
   );
 }
-
-class GetActualLimitsEvent extends WithdrawCashEvent {
-  const GetActualLimitsEvent();
-  @override
-  List<Object> get props => [];
-}

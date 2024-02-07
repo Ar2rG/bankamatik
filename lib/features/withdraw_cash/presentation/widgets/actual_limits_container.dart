@@ -1,4 +1,4 @@
-import 'package:bankamatik/features/withdraw_cash/presentation/bloc/withdraw_cash_bloc.dart';
+import 'package:bankamatik/features/withdraw_cash/presentation/bloc/actual_limits_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -12,16 +12,14 @@ class ActualLimitsContainer extends StatefulWidget {
 class _ActualLimitsContainerState extends State<ActualLimitsContainer> {
   @override
   void initState() {
-    context.read<WithdrawCashBloc>().add(const GetActualLimitsEvent());
+    context.read<ActualLimitsBloc>().add(const GetActualLimitsEvent());
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<WithdrawCashBloc, WithdrawCashState>(
-        buildWhen: (previousState, state) {
-      return state is GetActualLimitsEvent;
-    }, builder: (context, state) {
+    return BlocBuilder<ActualLimitsBloc, ActualLimitsState>(
+        builder: (context, state) {
       if (state is Initial) {
         return const Text("Initial");
       }
