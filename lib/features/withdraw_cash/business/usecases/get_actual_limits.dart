@@ -4,10 +4,10 @@ import 'package:dartz/dartz.dart';
 
 import '../repositories/withdraw_cash_repository.dart';
 
-class GetCash {
+class GetActualLimits {
   final WithdrawCashRepository repository;
 
-  GetCash(this.repository);
+  GetActualLimits(this.repository);
   Future<Either<Failure, Limits>> call() async {
     return await repository.getActualLimits();
   }

@@ -1,3 +1,4 @@
+import 'package:extended_masked_text/extended_masked_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -12,6 +13,7 @@ class WithdrawControls extends StatefulWidget {
 
 class _WithdrawControlsState extends State<WithdrawControls> {
   String inputString = '';
+  // final desiredAmount = MaskedTextController(mask: ".00 руб");
 
   @override
   void initState() {
@@ -24,6 +26,9 @@ class _WithdrawControlsState extends State<WithdrawControls> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         TextField(
+          decoration: InputDecoration(hintText: "Сумма в рублях"),
+          keyboardType: TextInputType.number,
+          // controller: desiredAmount,
           onChanged: (value) => setState(() => inputString = value),
         ),
         OutlinedButton(

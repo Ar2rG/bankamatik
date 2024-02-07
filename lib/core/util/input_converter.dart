@@ -5,7 +5,7 @@ class InputConverter {
   Either<Failure, int> stringToUnsignedInt(String str) {
     try {
       final integer = int.parse(str);
-      if (integer < 100 || integer % 2 == 0) {
+      if (integer < 100 || integer % 2 != 0) {
         throw const FormatException();
       }
       return Right(integer);

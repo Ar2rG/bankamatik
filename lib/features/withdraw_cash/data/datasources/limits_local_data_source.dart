@@ -7,6 +7,7 @@ import '../models/limits_model.dart';
 
 abstract class LimitsLocalDataSource {
   Future<LimitsModel> getLimits(int desiredAmount);
+
   Future<LimitsModel> getActualLimits();
 }
 

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../injection_container.dart';
 import '../bloc/withdraw_cash_bloc.dart';
+import '../widgets/actual_limits_container.dart';
 import '../widgets/custom_app_bar.dart';
 import '../widgets/custom_bottom_bar.dart';
 import '../widgets/custom_limits_view.dart';
@@ -18,8 +19,9 @@ class WithdrawCashPage extends StatelessWidget {
           appBar: CustomAppBar(),
           body: const Column(
             children: [
-              CustomLimitsView(),
               WithdrawControls(),
+              CustomLimitsView(),
+              ActualLimitsContainer(),
             ],
           ),
           bottomNavigationBar: const CustomBottomBar(),

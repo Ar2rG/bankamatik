@@ -7,7 +7,7 @@ sealed class WithdrawCashState extends Equatable {
   List<Object?> get props => [];
 }
 
-final class WithdrawCashInitial extends WithdrawCashState {}
+final class Initial extends WithdrawCashState {}
 
 final class Loading extends WithdrawCashState {}
 
