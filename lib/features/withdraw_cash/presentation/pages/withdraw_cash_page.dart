@@ -1,3 +1,4 @@
+import 'package:bankamatik/features/withdraw_cash/presentation/widgets/custom_top_clippers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -5,8 +6,7 @@ import '../../../../injection_container.dart';
 import '../bloc/actual_limits_bloc.dart';
 import '../bloc/withdraw_cash_bloc.dart';
 import '../widgets/actual_limits_container.dart';
-import '../widgets/custom_app_bar.dart';
-import '../widgets/custom_bottom_bar.dart';
+import '../widgets/custom_bottom_clippers.dart';
 import '../widgets/withdraw_limits_view.dart';
 import '../widgets/withdraw_controls.dart';
 
@@ -22,15 +22,35 @@ class WithdrawCashPage extends StatelessWidget {
           BlocProvider(create: (_) => sl<ActualLimitsBloc>()),
         ],
         child: Scaffold(
-          appBar: CustomAppBar(),
-          body: const Column(
+          appBar: AppBar(
+            title: const Text(
+              'ATM',
+              style: TextStyle(color: Colors.white),
+            ),
+            toolbarHeight: 60,
+            flexibleSpace: Container(
+              decoration: const BoxDecoration(
+                  gradient: LinearGradient(colors: [
+                Color.fromRGBO(56, 39, 180, 1),
+                Color.fromRGBO(108, 24, 164, 1),
+              ])),
+            ),
+          ),
+          body: const Stack(
             children: [
-              WithdrawControls(),
-              CustomLimitsView(),
-              ActualLimitsContainer(),
+              AllTopClippers(),
+              SingleChildScrollView(
+                child: Column(
+                  children: [
+                    WithdrawControls(),
+                    CustomLimitsView(),
+                    ActualLimitsContainer(),
+                  ],
+                ),
+              ),
+              AllBottomClippers()
             ],
           ),
-          bottomNavigationBar: const CustomBottomBar(),
         ));
   }
 }
