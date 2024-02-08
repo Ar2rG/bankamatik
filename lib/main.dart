@@ -18,11 +18,10 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'ATM',
         theme: ThemeData(
+          applyElevationOverlayColor: true,
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: const SafeArea(
-          child: WithdrawCashPage(),
-        ));
+        home: const WithdrawCashPage());
   }
 }

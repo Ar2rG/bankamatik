@@ -8,17 +8,17 @@ class FirstTopClipper extends CustomClipper<Path> {
     final height = size.height;
     final width = size.width;
     Path path = Path()
-      ..lineTo(0, height * 0.21) // Левая вертикальная линия
+      ..lineTo(0, height * 0.43) // Левая вертикальная линия
       ..cubicTo(
           // x1, y1
-          width * 0.45,
-          height * 0.16,
+          width * 0.50,
+          height * 0.35,
           // x2, y2
-          width * 0.69,
-          height * 0.30,
+          width * 0.65,
+          height * 0.62,
           // x3, y3
           width,
-          height * 0.25)
+          height * 0.55)
       ..lineTo(width, 0); // Правая вертикальная линия
     return path;
   }
@@ -35,17 +35,17 @@ class SecondTopClipper extends CustomClipper<Path> {
     final height = size.height;
     final width = size.width;
     Path path = Path()
-      ..lineTo(0, height * 0.20) // Левая вертикальная линия
+      ..lineTo(0, height * 0.40) // Левая вертикальная линия
       ..cubicTo(
           // x1, y1
-          width * 0.30,
-          height * 0.19,
+          width * 0.50,
+          height * 0.45,
           // x2, y2
-          width * 0.7,
-          height * 0.38,
+          width * 0.80,
+          height * 0.80,
           // x3, y3
           width,
-          height * 0.23)
+          height * 0.50)
       ..lineTo(width, 0); // Правая вертикальная линия
     return path;
   }
@@ -62,17 +62,17 @@ class ThirdTopClipper extends CustomClipper<Path> {
     final height = size.height;
     final width = size.width;
     Path path = Path()
-      ..lineTo(0, height * 0.28) // Левая вертикальная линия
+      ..lineTo(0, height * 0.60) // Левая вертикальная линия
       ..cubicTo(
           // x1, y1
-          width * 0.40,
-          height * 0.30,
+          width * 0.50,
+          height * 0.62,
           // x2, y2
           width * 0.55,
-          height * 0.12,
+          height * 0.32,
           // x3, y3
           width,
-          height * 0.24)
+          height * 0.49)
       ..lineTo(width, 0); // Правая вертикальная линия
     return path;
   }
@@ -89,17 +89,17 @@ class FourthTopClipper extends CustomClipper<Path> {
     final height = size.height;
     final width = size.width;
     Path path = Path()
-      ..lineTo(0, height * 0.21) // Левая вертикальная линия
+      ..lineTo(0, height * 0.44) // Левая вертикальная линия
       ..cubicTo(
           // x1, y1
-          width * 0.50,
-          height * 0.37,
+          width * 0.40,
+          height * 0.75,
           // x2, y2
-          width * 0.78,
-          height * 0.12,
+          width * 0.75,
+          height * 0.45,
           // x3, y3
           width,
-          height * 0.33)
+          height * 0.65)
       ..lineTo(width, 0); // Правая вертикальная линия
     return path;
   }

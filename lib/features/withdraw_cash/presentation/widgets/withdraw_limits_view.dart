@@ -9,12 +9,9 @@ class CustomLimitsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<WithdrawCashBloc, WithdrawCashState>(
-        //     buildWhen: (previousState, state) {
-        //   return state is GetCashEvent;
-        // },
         builder: (context, state) {
       if (state is Initial) {
-        return const Text("Initial");
+        return const Text("");
       }
       if (state is Loading) {
         return const Center(

@@ -21,19 +21,30 @@ class _WithdrawControlsState extends State<WithdrawControls> {
   @override
   Widget build(BuildContext context) {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.end,
       children: [
         TextField(
-          decoration: InputDecoration(hintText: "Сумма в рублях"),
+          textAlign: TextAlign.center,
+          decoration: const InputDecoration(
+              hintText: "Сумма в рублях",
+              suffix: Text(
+                '.00 руб',
+                style: TextStyle(color: Colors.white),
+              )),
           keyboardType: TextInputType.number,
-          // controller: desiredAmount,
+          style: const TextStyle(color: Colors.white),
           onChanged: (value) => setState(() => inputString = value),
         ),
         OutlinedButton(
+            style: ButtonStyle(
+                backgroundColor: MaterialStateColor.resolveWith(
+              (states) => const Color.fromRGBO(230, 30, 173, 1),
+            )),
             onPressed: () {
               context.read<WithdrawCashBloc>().add(GetCashEvent(inputString));
             },
-            child: const Text('Выдать сумму'))
+            child: const Text('Выдать сумму',
+                style: TextStyle(color: Colors.white)))
       ],
     );
   }

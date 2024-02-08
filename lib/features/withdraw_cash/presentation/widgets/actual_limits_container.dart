@@ -21,7 +21,7 @@ class _ActualLimitsContainerState extends State<ActualLimitsContainer> {
     return BlocBuilder<ActualLimitsBloc, ActualLimitsState>(
         builder: (context, state) {
       if (state is Initial) {
-        return const Text("Initial");
+        return const Text('');
       }
       if (state is Loading) {
         return const Center(

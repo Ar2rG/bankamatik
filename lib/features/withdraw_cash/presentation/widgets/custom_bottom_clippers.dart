@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 
 class FirstBottomClipper extends CustomClipper<Path> {
@@ -9,9 +7,9 @@ class FirstBottomClipper extends CustomClipper<Path> {
     final width = size.width;
     Path path = Path()
       ..moveTo(0, size.height) // Перенос точки в левый нижний угол
-      ..lineTo(0, size.height * 0.87) // Левая вертикальная линия
-      ..cubicTo(width * 0.20, height * 0.85, width * 0.40, height * 0.97, width,
-          height * 0.92)
+      ..lineTo(0, size.height * 0.37) // Левая вертикальная линия
+      ..cubicTo(width * 0.20, height * 0.33, width * 0.40, height * 0.85, width,
+          height * 0.60)
       ..lineTo(size.width, size.height); // Правая вертикальная линия
     return path;
   }
@@ -29,9 +27,9 @@ class SecondBottomClipper extends CustomClipper<Path> {
     final width = size.width;
     Path path = Path()
       ..moveTo(0, size.height) // Перенос точки в левый нижний угол
-      ..lineTo(0, size.height * 0.90) // Левая вертикальная линия
-      ..cubicTo(width * 0.40, height * 0.80, width * 0.80, height * 0.96, width,
-          height * 0.94)
+      ..lineTo(0, size.height * 0.50) // Левая вертикальная линия
+      ..cubicTo(width * 0.40, height * 0.10, width * 0.80, height * 0.70, width,
+          height * 0.65)
       ..lineTo(size.width, size.height); // Правая вертикальная линия
     return path;
   }
@@ -49,9 +47,9 @@ class ThirdBottomClipper extends CustomClipper<Path> {
     final width = size.width;
     Path path = Path()
       ..moveTo(0, size.height) // Перенос точки в левый нижний угол
-      ..lineTo(0, size.height * 0.89) // Левая вертикальная линия
-      ..cubicTo(width * 0.40, height * 0.99, width * 0.70, height * 0.84, width,
-          height * 0.87)
+      ..lineTo(0, size.height * 0.40) // Левая вертикальная линия
+      ..cubicTo(width * 0.30, height * 0.95, width * 0.40, height * 0.35, width,
+          height * 0.35)
       ..lineTo(size.width, size.height); // Правая вертикальная линия
     return path;
   }
@@ -69,9 +67,9 @@ class FourthBottomClipper extends CustomClipper<Path> {
     final width = size.width;
     Path path = Path()
       ..moveTo(0, size.height) // Перенос точки в левый нижний угол
-      ..lineTo(0, size.height * 0.82) // Левая вертикальная линия
-      ..cubicTo(width * 0.25, height * 0.99, width * 0.50, height * 0.84, width,
-          height * 0.93)
+      ..lineTo(0, size.height * 0.1) // Левая вертикальная линия
+      ..cubicTo(width * 0.20, height * 0.75, width * 0.50, height * 0.15, width,
+          height * 0.63)
       ..lineTo(size.width, size.height); // Правая вертикальная линия
     return path;
   }
