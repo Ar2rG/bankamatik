@@ -16,7 +16,7 @@ class FirstBottomClipper extends CustomClipper<Path> {
 
   @override
   bool shouldReclip(covariant CustomClipper<Path> oldClipper) {
-    return true;
+    return false;
   }
 }
 
@@ -36,7 +36,7 @@ class SecondBottomClipper extends CustomClipper<Path> {
 
   @override
   bool shouldReclip(covariant CustomClipper<Path> oldClipper) {
-    return true;
+    return false;
   }
 }
 
@@ -56,7 +56,7 @@ class ThirdBottomClipper extends CustomClipper<Path> {
 
   @override
   bool shouldReclip(covariant CustomClipper<Path> oldClipper) {
-    return true;
+    return false;
   }
 }
 
@@ -76,7 +76,7 @@ class FourthBottomClipper extends CustomClipper<Path> {
 
   @override
   bool shouldReclip(covariant CustomClipper<Path> oldClipper) {
-    return true;
+    return false;
   }
 }
 

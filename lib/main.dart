@@ -19,6 +19,7 @@ class MyApp extends StatelessWidget {
         title: 'ATM',
         theme: ThemeData(
           applyElevationOverlayColor: true,
+          scaffoldBackgroundColor: const Color.fromRGBO(242, 242, 250, 1),
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),

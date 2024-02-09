@@ -7,7 +7,7 @@ import '../bloc/actual_limits_bloc.dart';
 import '../bloc/withdraw_cash_bloc.dart';
 import '../widgets/actual_limits_container.dart';
 import '../widgets/custom_bottom_clippers.dart';
-import '../widgets/withdraw_limits_view.dart';
+import '../widgets/withdraw_limits_container.dart';
 import '../widgets/withdraw_controls.dart';
 
 class WithdrawCashPage extends StatelessWidget {
@@ -31,15 +31,23 @@ class WithdrawCashPage extends StatelessWidget {
             toolbarHeight: MediaQuery.of(context).size.height * 0.08,
             flexibleSpace: Container(
               decoration: const BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                        color: Color.fromRGBO(0, 0, 0, 0.6),
+                        blurRadius: 20,
+                        offset: Offset(0, 0.1))
+                  ],
                   gradient: LinearGradient(colors: [
-                Color.fromRGBO(56, 39, 180, 1),
-                Color.fromRGBO(108, 24, 164, 1),
-              ])),
+                    Color.fromRGBO(56, 39, 180, 1),
+                    Color.fromRGBO(108, 24, 164, 1),
+                  ])),
             ),
           ),
-          body: Column(
+          body: ListView(
+            physics: const NeverScrollableScrollPhysics(),
             children: [
               Container(
+                color: Colors.white,
                 height: MediaQuery.of(context).size.height * 0.35,
                 child: const Stack(children: [
                   AllTopClippers(),
@@ -48,27 +56,27 @@ class WithdrawCashPage extends StatelessWidget {
               ),
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.01,
-                child: const Placeholder(),
               ),
               Container(
+                color: Colors.white,
                 height: MediaQuery.of(context).size.height * 0.17,
-                child: Placeholder(),
+                child: const WithdrawLimitsContainer(),
               ),
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.01,
-                child: const Placeholder(),
               ),
               Container(
+                color: Colors.white,
                 height: MediaQuery.of(context).size.height * 0.17,
-                child: Placeholder(),
+                child: const ActualLimitsContainer(),
               ),
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.01,
-                child: const Placeholder(),
               ),
-              Expanded(
-                child: AllBottomClippers(),
-              ),
+              Container(
+                  height: MediaQuery.of(context).size.height * 0.17,
+                  color: Colors.white,
+                  child: const AllBottomClippers()),
             ],
           ),
         ));
